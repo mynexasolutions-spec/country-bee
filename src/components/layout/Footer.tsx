@@ -179,6 +179,11 @@ export const Footer = () => {
               </h3>
               <ul className="space-y-1.5 font-sans text-xs sm:text-[13.5px] text-cream/80">
                 <li>
+                  <Link href="/account" className="hover:text-honey-yellow transition-colors">
+                    My Account
+                  </Link>
+                </li>
+                <li>
                   <Link href="/contact" className="hover:text-honey-yellow transition-colors">
                     FAQs
                   </Link>

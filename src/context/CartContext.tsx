@@ -1,7 +1,7 @@
 'use client';
 
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
-import type { HoneyProduct } from '@/data/products';
+import { honeyProducts, type HoneyProduct } from '@/data/products';
 
 export interface CartItem {
   key: string; // `${productId}__${weight}`
@@ -16,6 +16,8 @@ export interface CartItem {
 
 interface CartContextValue {
   items: CartItem[];
+  /** False until the saved cart has been read on the client. */
+  isHydrated: boolean;
   cartCount: number;
   subtotal: number;
   isCartOpen: boolean;
@@ -31,6 +33,28 @@ const CartContext = createContext<CartContextValue | undefined>(undefined);
 
 const STORAGE_KEY = 'country_bee_cart_v1';
 
+/**
+ * Re-sync a saved cart with the current catalogue so shoppers never see stale
+ * prices, names or images, and drop items that are no longer sold.
+ */
+function refreshFromCatalog(saved: CartItem[]): CartItem[] {
+  return saved.flatMap((item) => {
+    const product = honeyProducts.find((p) => p.id === item.productId);
+    const variant = product?.variants.find((v) => v.weight === item.weight);
+    if (!product || !variant || !product.inStock) return [];
+    return [
+      {
+        ...item,
+        slug: product.slug,
+        name: product.name,
+        imageUrl: product.imageUrl,
+        price: variant.price,
+        quantity: Math.max(1, Math.floor(item.quantity) || 1),
+      },
+    ];
+  });
+}
+
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [items, setItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -44,7 +68,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
       if (raw) {
         const parsed = JSON.parse(raw) as CartItem[];
         if (Array.isArray(parsed)) {
-          setItems(parsed);
+          setItems(refreshFromCatalog(parsed));
         }
       }
     } catch {
@@ -133,6 +157,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     <CartContext.Provider
       value={{
         items,
+        isHydrated,
         cartCount,
         subtotal,
         isCartOpen,

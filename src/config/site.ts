@@ -4,6 +4,13 @@ export const siteConfig = {
   description:
     'Sustainably harvested raw organic honey, comb, and bee products straight from wild natural forest apiaries to your home.',
   url: 'https://countrybee.example.com',
+  contact: {
+    address: 'B1,192 Behind Jamal Masjid, Checki wangung, Qazigund, Anantnag 192221',
+    email: 'countrybeefoods@gmail.com',
+    phoneDisplay: '+918825065419',
+    phoneHref: '+918825065419',
+    whatsappNumber: '918825065419',
+  },
   links: {
     instagram: 'https://instagram.com/countrybee',
     facebook: 'https://facebook.com/countrybee',

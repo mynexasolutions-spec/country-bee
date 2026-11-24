@@ -45,7 +45,7 @@ export const HoneyProductCard = ({ product, onQuickView }: HoneyProductCardProps
   return (
     <article className="group relative flex flex-col bg-white rounded-[5px] p-1.5 sm:p-2.5 border border-beige/90 hover:border-honey/80 shadow-soft hover:shadow-[0_14px_30px_-8px_rgba(18,61,32,0.16)]">
       {/* Compact Product Image Container — strictly rounded-[5px] */}
-      <div className="relative w-full aspect-[3/3.2] sm:aspect-[2.5/2] rounded-[5px] overflow-hidden bg-cream">
+      <div className="relative w-full aspect-square rounded-[5px] overflow-hidden bg-cream">
         <Link
           href={`/products/${product.slug}`}
           aria-label={`View ${product.name} details`}
@@ -56,7 +56,7 @@ export const HoneyProductCard = ({ product, onQuickView }: HoneyProductCardProps
             alt={`${product.name} - 100% Pure Country Bee Natural Honey`}
             fill
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-            className="object-cover object-[center_30%] transition-transform duration-700 ease-out hover:scale-105"
+            className="object-cover object-center transition-transform duration-700 ease-out hover:scale-105"
           />
 
           {/* Subtle Warm Sunlight Shimmer Sweep on Hover */}
