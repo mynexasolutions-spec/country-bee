@@ -1,0 +1,267 @@
+/* =========================================================================
+   COUNTRY BEE SELF-HOSTED FONTS (@font-face)
+   ========================================================================= */
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/playfair-display-latin-400-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/playfair-display-latin-600-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/playfair-display-latin-700-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('/fonts/playfair-display-latin-800-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/dm-sans-latin-400-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/dm-sans-latin-500-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/dm-sans-latin-600-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/dm-sans-latin-700-normal.woff2') format('woff2');
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* =========================================================================
+     COUNTRY BEE FONTS & DESIGN SYSTEM TOKENS (Self-Hosted via @fontsource)
+     ========================================================================= */
+  --font-playfair: 'Playfair Display', Georgia, serif;
+  --font-dm-sans: 'DM Sans', system-ui, -apple-system, sans-serif;
+
+  --forest-green: #123D20;
+  --deep-green: #092D17;
+  --honey-gold: #F5B400;
+  --golden-yellow: #FFCA28;
+  --cream-bg: #FFF7EA;
+  --warm-beige: #F3E5D0;
+  --dark-text: #29251F;
+  --white: #FFFFFF;
+  --soft-leaf-green: #789B40;
+
+  /* Semantic Mappings */
+  --background: var(--cream-bg);
+  --foreground: var(--dark-text);
+  --primary: var(--forest-green);
+  --primary-dark: var(--deep-green);
+  --accent: var(--honey-gold);
+  --accent-secondary: var(--golden-yellow);
+  --border-color: var(--warm-beige);
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-dm-sans), system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Typography Hierarchy */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-playfair), Georgia, serif;
+    color: var(--deep-green);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+  }
+
+  h1 {
+    font-size: clamp(2.25rem, 5vw, 3.75rem);
+  }
+
+  h2 {
+    font-size: clamp(1.85rem, 3.5vw, 2.75rem);
+  }
+
+  h3 {
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+  }
+
+  h4 {
+    font-size: clamp(1.15rem, 2vw, 1.5rem);
+  }
+
+  p {
+    color: var(--dark-text);
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Accessible Focus States */
+  :focus-visible {
+    outline: 2px solid var(--honey-gold);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* Responsive Container */
+  .cb-container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  @media (min-width: 640px) {
+    .cb-container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .cb-container {
+      max-width: 1350px;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
+  /* Reusable Buttons */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3.5 text-base font-semibold text-white transition-all duration-300 rounded-full shadow-forest bg-forest hover:bg-forest-dark focus-visible:ring-2 focus-visible:ring-honey focus-visible:ring-offset-2 active:scale-95 disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3.5 text-base font-semibold text-charcoal transition-all duration-300 rounded-full shadow-honey bg-honey hover:bg-honey-yellow focus-visible:ring-2 focus-visible:ring-forest focus-visible:ring-offset-2 active:scale-95 disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3.5 text-base font-semibold transition-all duration-300 border-2 rounded-full border-forest text-forest hover:bg-forest/10 focus-visible:ring-2 focus-visible:ring-honey focus-visible:ring-offset-2 active:scale-95 disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium transition-colors duration-200 text-forest hover:bg-beige-warm/50 rounded-lg;
+  }
+
+  /* Reusable Cards */
+  .card-honey {
+    @apply bg-white rounded-2xl border border-beige p-6 shadow-soft transition-all duration-300 hover:shadow-soft-lg hover:-translate-y-1;
+  }
+
+  .card-forest {
+    @apply bg-forest text-white rounded-2xl p-6 shadow-forest border border-forest-dark/40;
+  }
+
+  /* Section Spacing */
+  .section-spacing {
+    @apply py-12 md:py-20 lg:py-24;
+  }
+
+  .section-header {
+    @apply text-center max-w-2xl mx-auto mb-12 space-y-3;
+  }
+
+  /* Brand Badge */
+  .brand-badge {
+    @apply inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-honey/20 text-forest border border-honey/40;
+  }
+}
+
+/* =========================================================================
+   INFINITE CONTINUOUS SMOOTH MARQUEE (Right-to-Left)
+   ========================================================================= */
+@keyframes honeyMarqueeRightToLeft {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-honey-marquee {
+  display: flex;
+  width: max-content;
+  animation: honeyMarqueeRightToLeft 24s linear infinite;
+  will-change: transform;
+}
+
+.animate-honey-marquee:hover {
+  animation-play-state: paused;
+}
+
+@media (max-width: 640px) {
+  .animate-honey-marquee {
+    animation-duration: 18s;
+  }
+}
